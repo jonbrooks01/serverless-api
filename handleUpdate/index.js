@@ -10,16 +10,15 @@ exports.handler = async (event) => {
     statusCode: null,
     body: null,
   };
-  console.log(event.pathParameters, "PATH PARAM");
-  let parsedBody = JSON.parse(event.body);
-  const id = event.pathParameters?.id;
-  const existingPerson = await peopleModel.query("id").eq(id).exec();
+
   try {
-    if (existingPerson.length > 0) {
-      const personToUpdate = existingPerson[0];
-      personToUpdate.name = parsedBody.name;
-      personToUpdate.age = parsedBody.age;
-      await personToUpdate.save();
+    const id = event.pathParameters?.id;
+    let parsedBody = JSON.parse(event.body);
+    let updatedPerson;
+    if (id) {
+      updatedPerson = await peopleModel.update({ id }, parsedBody);
+      response.statusCode = 200;
+      response.body = JSON.stringify(updatedPerson);
     } else {
       response.statusCode = 404;
       response.body = JSON.stringify({ error: "Person not found" });

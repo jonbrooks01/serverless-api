@@ -9,10 +9,12 @@ What is the root URL to your API?
 Invoke this API at: https://biw45bbf36.execute-api.us-west-2.amazonaws.com/undefined/
 
 What are the routes?
-Post: arn:aws:execute-api:us-west-2:548977414885:biw45bbf36/*/POST/people
-Get: arn:aws:execute-api:us-west-2:548977414885:biw45bbf36/*/GET/people/*
-Put: arn:aws:execute-api:us-west-2:548977414885:biw45bbf36/*/PUT/people/*
-Delete: arn:aws:execute-api:us-west-2:548977414885:biw45bbf36/*/DELETE/people
+
+- Post: /*/POST/people
+- Get: /*/GET/people/*
+- Put: /*/PUT/people/*
+- Delete: /*/DELETE/people
+- "*" = ID
 
 What inputs do they require?
 (Post)The Create will require ID, Name and Age
